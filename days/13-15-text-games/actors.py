@@ -38,12 +38,14 @@ class Wizard(Creature): #TODO: Change wizard to general hero? Add sublasses for 
     def attack(self, creature):
         my_roll = self.defensive_roll()
         their_roll = creature.defensive_roll()
+        diff = abs(self.level - creature.level)
         if my_roll >= their_roll:
-            creature.health -= self.level
+            creature.health -= diff
+            self.health += creature.level
             if creature.health <= 0:
                 return True
         else:
-            self.health -= creature.level
+            self.health -= diff
             print('Ouch! Current health is now {}'.format(self.health))
             return False
 
