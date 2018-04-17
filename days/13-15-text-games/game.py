@@ -23,9 +23,13 @@ def print_header():
 def game_loop():
     creatures = [
         Creature('Bat', 5, 5),
+        Creature('Bat', 5, 5),
+        Creature('Toad', 1, 1),
         Creature('Toad', 1, 1),
         Creature('Tiger', 12, 12),
+        Creature('Tiger', 12, 12),
         Dragon('Black Dragon', 50, 50, scaliness=2, breaths_fire=False),
+        Dragon('Red Dragon', 50, 50, scaliness=1, breaths_fire=True),
         Wizard('Evil wizard', 150, 150),
     ]
 
@@ -50,7 +54,11 @@ def game_loop():
                 print("The wizard {} has been hurt by the powerful {}".format(hero.name, active_creature.name))
                 if hero.health <= 0:
                     print("The hero {} has perished!".format(hero.name))
-                    break
+                    cmd = input('Do you wish to play again: [y]es or [no]?')
+                    if cmd == 'y':
+                        main()
+                    else:
+                        break
         elif cmd == 'r':
             print('The wizard {} has become unsure of his power and flees!!!'.format(hero.name))
         elif cmd == 'l':
